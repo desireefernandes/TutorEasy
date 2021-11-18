@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -19,9 +21,6 @@
 <body>
     <!-- navbar -->
     <?php include 'header.php'; ?>
-
-
-   
 
     <!--Conteúdo index - INICIO-->
     <section id="inicio">

@@ -2,10 +2,10 @@
 	<h1 class="header item"><a href="#" title="TutorEasy">TutorEasy</a></h1>
 	<nav>
 		<ul>
-			<li><a href="#inicio" title="inicio">Início</a></li>
-			<li><a href="#tutoriais" title="tutoriais">Tutoriais</a></li>
-			<li><a href="#ranking" title="ranking">Ranking</a></li>
-			<li><a href="#quemsomos" title="quemsomos">Quem somos?</a></li>
+			<li><a href="index#tutoriais" 	title="inicio">		Início</a></li>
+			<li><a href="index#tutoriais" 	title="tutoriais">	Tutoriais</a></li>
+			<li><a href="index#ranking" 	title="ranking">	Ranking</a></li>
+			<li><a href="index#quemsomos" 	title="quemsomos">	Quem somos?</a></li>
 		</ul>
 	</nav>
 	<div class="right menu">

@@ -1,4 +1,7 @@
 <?php
+
+
+
 	//Lembrem-se de trocar por seus próprios dados
 	$dsn = 'mysql:dbname=tutorEasy';
 	$user = 'user0';

@@ -38,7 +38,7 @@ include 'banco.php';
 
 	<h1>Você está logado, <?= $_SESSION['email']; ?>!</h1>
 
-    <div class="item"><a href="user-delete.php" > Deletar conta</a></div>
+    <div class="item"><a href="user-delete.php?id=<?=$_SESSION['user_id']?>"> Deletar conta</a></div>
     <div class="item"><a href="logout.php" > Sair</a></div>
 
     <!-- TUTORIAIS -->

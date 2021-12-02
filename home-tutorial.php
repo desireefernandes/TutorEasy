@@ -5,11 +5,23 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     header('location: erro.php');
     exit();
+
 }
 
-include 'banco.php';
 
+
+
+//********************GG*************listar tutorial***********************************//
+include 'banco.php';
+$stmt =  $pdo->prepare('SELECT * FROM tutorial WHERE idtutorial = ? ' ); //user_id = ? não serve
+$stmt->execute([$_SESSION['user_id']]);
+
+$tutorial = $stmt->fetchAll();
+//*******************GG************listar tutorial************************************//
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -40,6 +52,32 @@ include 'banco.php';
 
     <div class="item"><a href="user-delete.php?id=<?=$_SESSION['user_id']?>"> Deletar conta</a></div>
     <div class="item"><a href="logout.php" > Sair</a></div>
+
+
+
+
+<!--*************GG**********cadastro tutoriais********************-->
+    <table>
+    <?php foreach ($tutorial as $tutoriais): ?> 
+    <tr>
+        <td><?= $tutoriais['title'] ?></td>
+        <td><?= $tutoriais['description'] ?></td>
+        <td><a href="tutorial-delete.php?id=<?= $tutorial['id']?>"> Apagar tutorial</a></td>
+    </tr>
+    <?php endforeach?>
+</table>
+
+<!--*************GG*******formulário pra salvar um novo tutoriais***-->
+<form action="tutorial-save.php" method="POST">
+    <h2> Novo tutorial</h2>
+    <input type="text" name="title" placeholder="Titulo">
+    <input type="text" name="description" placeholder="Descrição">
+    <input type="Submit" Value="Salvar">
+</form>
+<!--**********************************************************************-->
+
+
+
 
     <!-- TUTORIAIS -->
     <section id= "tutoriais">
@@ -92,6 +130,7 @@ include 'banco.php';
     </div>
     </div>
     </div>
+
 
     <!-- footer -->
     <?php include 'footer.php'; ?>

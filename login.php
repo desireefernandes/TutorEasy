@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include 'banco.php';
@@ -16,9 +15,6 @@ $pdo = dbConnect();
   <title>TutorEasy</title>
 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/footer.css">
-
   <!--Semantic UI -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -43,21 +39,25 @@ $pdo = dbConnect();
             <div class="ui stacked segment">
 
               <div class="field">
-                <div class="ui left icon input floating-label">
-                  <i class="envelope icon"></i>
-                  <!-- INPUT -->
-                  <input type="email" name="email" placeholder="E-mail">
+                <div class="required field">
+                  <div class="ui left icon input floating-label">
+                    <i class="envelope icon"></i>
+                    <!-- INPUT EMAIL-->
+                    <input type="email" name="email" placeholder="E-mail" required>
+                  </div>
                 </div>
               </div>
 
               <div class="field">
-                <div div class="ui left icon input floating-label">
-                  <i class="lock icon"></i>
-                  <!-- INPUT -->
-                  <input type="password" name="password" placeholder="Senha">
+                <div class="required field">
+                  <div class="ui left icon input floating-label">
+                    <i class="lock icon"></i>
+                    <!-- INPUT SENHA-->
+                    <input type="password" name="password" placeholder="Senha" required>
+                  </div>
                 </div>
+                <input class="ui fluid large teal submit button" type="submit" value="Entrar">
               </div>
-              <input class="ui fluid large teal submit button" type="submit" value="Entrar">
             </div>
 
             <div class="ui error message">
@@ -81,4 +81,4 @@ $pdo = dbConnect();
 
 </body>
 
-</html> 
+</html>

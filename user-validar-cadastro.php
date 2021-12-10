@@ -1,18 +1,15 @@
 <?php
 	session_start();
 
-	// echo"GET";
-	// var_dump($_GET);
-	// print("POST");
-	// var_dump($_POST);
-
 	include 'banco.php';
+	$pdo = dbConnect();
 
 	$name 		= $_POST['name'];
 	$lastname 	= $_POST['lastname'];
 	$email 		= $_POST['email'];
 	$password 	= $_POST['password'];
-
+	
+	//Inserindo dados no banco, criando conta
 	$stmt = $pdo-> prepare("
 		INSERT INTO user (name, lastname, email, password)
 		VALUES (?, ?, ?, ?)

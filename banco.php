@@ -1,12 +1,15 @@
 <?php
-
-
-
+	function dbConnect (){
 	//Lembrem-se de trocar por seus próprios dados
-	$dsn = 'mysql:dbname=tutorEasy';
-	$user = 'user0';
-	$password = 'Senha@123';
+		try {
+			$dsn = 'mysql:dbname=tutorEasy';
+	
+			$pdo = new PDO($dsn, 'user0', 'Senha@123');
+			return $pdo;
 
-	$pdo = new PDO($dsn, $user, $password);
+		} catch (PDOException $e){
+			echo 'Erro ao conectar com o MySql: ' . $e->getMessage();
+		}
+	}
 
 ?>

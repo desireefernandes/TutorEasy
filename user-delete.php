@@ -2,6 +2,7 @@
 <?php
 
 include 'banco.php';
+$pdo = dbConnect();
 
 
 $id = $_GET['id'];

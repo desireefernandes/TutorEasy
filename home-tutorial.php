@@ -13,6 +13,8 @@ if (!isset($_SESSION['user_id'])) {
 
 //********************GG*************listar tutorial***********************************//
 include 'banco.php';
+$pdo = dbConnect();
+
 $stmt =  $pdo->prepare('SELECT * FROM tutorial WHERE idtutorial = ? ' ); //user_id = ? não serve
 $stmt->execute([$_SESSION['user_id']]);
 

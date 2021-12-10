@@ -3,6 +3,7 @@
 session_start();
 
 include 'banco.php';
+$pdo = dbConnect();
 
 $stmt = $pdo->prepare('INSERT INTO tutorial (title, description, idtutorial) VALUES 
 	(?,?,?)');

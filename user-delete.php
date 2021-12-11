@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 
 include 'banco.php';
 $pdo = dbConnect();
@@ -13,6 +13,7 @@ try{
     $smt = $pdo->prepare("DELETE FROM  user WHERE iduser = ?"); 
     $smt->bindParam(1,$id);
     $del=$smt->execute();
+    session_destroy();
 
 } catch (Exception $th){
 

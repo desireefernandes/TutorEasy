@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include 'banco.php';
@@ -30,10 +29,9 @@ $pdo = dbConnect();
 
             <div class="ui middle aligned center aligned grid">
                 <div class="column">
-                    <h2 class="ui teal image header">
-                        <div class="content">Cadastro</div>
-                    </h2>
-
+                    
+                    <h2 class="ui teal image header"> <div class="content">Cadastro</div></h2>
+                    <!-- formulario -->
                     <form class="ui large form" action="user-validar-cadastro.php" method="POST">
                         <div class="two fields">
                             <!-- input nome -->
@@ -79,8 +77,8 @@ $pdo = dbConnect();
                                 <div class="required field">
                                     <div div class="ui left icon input floating-label">
                                         <i class="lock icon"></i>
-                                        <input type="password" name="verificationPassword"
-                                            placeholder="Confirma a senha" required>
+                                        <input type="password" name="confirm_password"
+                                            placeholder="Confirme a senha" required>
                                     </div>
                                 </div>
                             </div>

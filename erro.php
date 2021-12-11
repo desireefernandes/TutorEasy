@@ -28,7 +28,7 @@
             	<div class="column">
                 	<h2 class="ui teal image header">
                 		<div class="ui message">
-                			<h4>Opa... Este usuário não existe, <a href="login.php">tente novamente</a></h4>
+                			<h4>Opa... Email ou senha incorretos, <a href="login.php">tente novamente</a></h4>
                 		</div>
                 	</h2>
             	</div>

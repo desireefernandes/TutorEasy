@@ -1,15 +1,11 @@
 <?php
-
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header('location: erro.php');
+if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
+	session_destroy();
+	header('location: index.php');
     exit();
-
 }
-
-
-
 
 //********************GG*************listar tutorial***********************************//
 include 'banco.php';
@@ -21,9 +17,6 @@ $stmt->execute([$_SESSION['user_id']]);
 $tutorial = $stmt->fetchAll();
 //*******************GG************listar tutorial************************************//
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -47,7 +40,7 @@ $tutorial = $stmt->fetchAll();
     <div class="ui text container">      
     <div class="ui middle aligned center aligned grid">
 
-	<h1>Você está logado, <?= $_SESSION['email']; ?>!</h1>
+	<h1>Você está logado, <?= $_SESSION['user_name']; ?>!</h1>
 
     <div class="item"><a href="user-delete.php?id=<?=$_SESSION['user_id']?>"> Deletar conta</a></div>
     <div class="item"><a href="logout.php" > Sair</a></div>

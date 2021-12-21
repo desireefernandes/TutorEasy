@@ -6,7 +6,7 @@ $id = $_GET['id'];
 var_dump($id);
 
 try{
-	$smt = $pdo->prepare("DELETE FROM usuario WHERE id =?");
+	$smt = $pdo->prepare("DELETE FROM USER WHERE id =?");
 	$smt->bindParam(1,$id);
 	$del=$smt->execute();
 
@@ -15,7 +15,7 @@ try{
 	echo $th;
 }
 
-header('location: cadastro.php');
+header('location: user-cadastro.php');
 
 
 ?>

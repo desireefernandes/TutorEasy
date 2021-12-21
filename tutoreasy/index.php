@@ -20,16 +20,18 @@
 
 <body>
     <h1>Cadastre-se</h1>
-    <form action="cadastro.php" method="POST">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="senha" placeholder="senha">
+    <form action="user-cadastro.php" method="POST">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="lastname" placeholder="lastname">
+        <input type="text" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
         <input type="submit">
     </form>
 
     <h1>Login</h1>
     <form action="login.php" method="POST">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="senha" placeholder="senha">
+        <input type="text" name="email" placeholder="email">
+        <input type="password" name="password" placeholder=" password">
         <input type="submit">
     </form>
 </body>

@@ -1,4 +1,6 @@
 <?php
+ 
+ //perfil do usuário com todas as funcionalidades
 
 session_start();
 if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
@@ -16,8 +18,6 @@ $stmt->execute([$_SESSION['user_id']]);
 $tutorial= $stmt->fetchAll();
 ///////////////////////////
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -50,9 +50,7 @@ $tutorial= $stmt->fetchAll();
  <h2>Tutoriais</h2>
 
 
-
 <!--  SALVAR TUTORIAL -->
-
 
 <!--  PRA IMAGEM TEM QUE TER O enctype="multipart/form-data  MAS QUANDO USO O CAMPO NA TABELA FICA VAZIO
 QUANDO USO $_POST NA PÁGINA UPDATE-TUTORIAL.PHP  E SAVE-TUTORIAL.PHP  -->
@@ -84,9 +82,6 @@ QUANDO USO $_POST NA PÁGINA UPDATE-TUTORIAL.PHP  E SAVE-TUTORIAL.PHP  -->
 
  	<?php endforeach?>
 </table>
-
-
-
 
 
 </body>

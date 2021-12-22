@@ -4,6 +4,13 @@ session_start();
 include 'banco.php';
 $pdo = dbConnect();
 
+if ($_SESSION['flash_error']){
+    $_SESSION['flash_error'][1]--;
+    if ($_SESSION['flash_error'][1] < 0) {
+      unset($_SESSION['flash_error']);
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +36,22 @@ $pdo = dbConnect();
 
             <div class="ui middle aligned center aligned grid">
                 <div class="column">
-                    
-                    <h2 class="ui teal image header"> <div class="content">Cadastro</div></h2>
+
+                    <!--title -->
+                    <h2 class="ui teal image header">
+                        <div class="content">Cadastro</div>
+                    </h2>
+
+                    <!--Mensagem de erro-->
+                    <?php if ($_SESSION['flash_error']): ?>
+                    <div class="ui red message">
+                        <div class="content">
+                            <!--Conteúdo msg-->
+                            <?= $_SESSION['flash_error'][0] ?>
+                        </div>
+                    </div>
+                    <?php endif ?>
+
                     <!-- formulario -->
                     <form class="ui large form" action="user-validar-cadastro.php" method="POST">
                         <div class="two fields">
@@ -58,7 +79,7 @@ $pdo = dbConnect();
                             <div class="required field">
                                 <div div class="ui left icon input floating-label">
                                     <i class="envelope icon"></i>
-                                    <input type="email" name="email" placeholder="E-mail"required>
+                                    <input type="email" name="email" placeholder="E-mail" required>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +118,7 @@ $pdo = dbConnect();
     <?php include 'footer.php'; ?>
 
     <script type="text/javascript">
-    //
+        //
     </script>
 
 </body>

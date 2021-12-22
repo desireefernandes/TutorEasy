@@ -27,18 +27,21 @@
 	$stmt->execute([$email]);
 	//Error email já existente
 	if ($stmt->fetch() !== false) {
-		echo "E-mail já cadastrado!";
-		header('user-cadastro.php');
+		$_SESSION['flash_error'] = ['E-mail já cadastrado, realize o login!', 1];
+		//echo "E-mail já cadastrado!";
+		header('location: user-cadastro.php');
 		exit();
 	}//Error senha menor que 8 dígitos
 	elseif ($password != $confirm_password ) {
-		echo "Suas senhas não conferem";
-		header('user-cadastro.php');
+		$_SESSION['flash_error'] = ['Suas senhas não conferem', 1];
+		//echo "Suas senhas não conferem";
+		header('location: user-cadastro.php');
 		exit();
 	}//Error senhas n conferem
 	elseif (strlen($password) && strlen($confirm_password) <= 7) {
-		echo "Sua senha precisa possuir entre 8 e 15 caracteres e conter uma letra maiúscula, um símbolo e um número";
-		header('user-cadastro.php');
+		$_SESSION['flash_error'] = ['Sua senha precisa possuir entre 8 a 15 caracteres e <br> conter uma letra maiúscula, um símbolo e um número', 1];
+		//echo "A senha precisa possuir entre 8 a 15 caracteres e conter uma letra maiúscula, um símbolo e um número";
+		header('location: user-cadastro.php');
 		exit();
 	}
 	//----- END VERIFICAÇÕES E MENSAGENS DE ERRO
@@ -50,7 +53,8 @@
 		");
 	$stmt->execute([$name, $lastname, $email, $password]);
 
-	echo $inputString;
-	header('user-cadastro.php');
+	$_SESSION['flash_login'] = ['Cadastro realizado com sucesso, faça o login!', 1];
+	//echo $inputString;
+	header('location: login.php');
 
 ?>

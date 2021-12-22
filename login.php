@@ -7,6 +7,12 @@ if ($_SESSION['flash_error']){
     unset($_SESSION['flash_error']);
   }
 }
+elseif ($_SESSION['flash_login']){
+  $_SESSION['flash_login'][1]--;
+  if ($_SESSION['flash_login'][1] < 0) {
+    unset($_SESSION['flash_login']);
+  }
+}
 
 ?>
 
@@ -39,17 +45,26 @@ if ($_SESSION['flash_error']){
           <h2 class="ui teal image header">
             <div class="content">Acessar conta</div>
           </h2>
-          
+
           <!--Mensagem de erro-->
           <?php if ($_SESSION['flash_error']): ?>
-            <div class="ui error message">
+            <div class="ui red message">
               <div class="content">
                 <!--Conteúdo msg-->
                 <?= $_SESSION['flash_error'][0] ?>
               </div>
             </div>
           <?php endif ?>
-          
+          <!--Mensagem de login-->
+          <?php if ($_SESSION['flash_login']): ?>
+            <div class="ui green message">
+              <div class="content">
+                <!--Conteúdo msg-->
+                <?= $_SESSION['flash_login'][0] ?>
+              </div>
+            </div>
+          <?php endif ?>
+
           <!--Formulario -->
           <form class="ui large form" action="validar-login.php" method="POST">
             <div class="ui stacked segment">

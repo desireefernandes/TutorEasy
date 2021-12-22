@@ -1,8 +1,12 @@
 <?php
 session_start();
 
-include 'banco.php';
-$pdo = dbConnect();
+if ($_SESSION['flash_error']){
+  $_SESSION['flash_error'][1]--;
+  if ($_SESSION['flash_error'][1] < 0) {
+    unset($_SESSION['flash_error']);
+  }
+}
 
 ?>
 
@@ -30,10 +34,22 @@ $pdo = dbConnect();
 
       <div class="ui middle aligned center aligned grid">
         <div class="column">
+
+          <!--Title-->
           <h2 class="ui teal image header">
             <div class="content">Acessar conta</div>
           </h2>
-
+          
+          <!--Mensagem de erro-->
+          <?php if ($_SESSION['flash_error']): ?>
+            <div class="ui error message">
+              <div class="content">
+                <!--Conteúdo msg-->
+                <?= $_SESSION['flash_error'][0] ?>
+              </div>
+            </div>
+          <?php endif ?>
+          
           <!--Formulario -->
           <form class="ui large form" action="validar-login.php" method="POST">
             <div class="ui stacked segment">
@@ -58,12 +74,8 @@ $pdo = dbConnect();
                 </div>
                 <input class="ui fluid large teal submit button" type="submit" value="Entrar">
               </div>
-            </div>
 
-            <div class="ui error message">
-              <!--Mensagem de erro-->
             </div>
-
           </form>
 
           <div class="ui message">

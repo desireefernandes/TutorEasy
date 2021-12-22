@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
 	include 'banco.php';
 	$pdo = dbConnect();
 
@@ -15,7 +17,8 @@
 	//error
 	$linhas = $stmt->fetchAll();	
 	if (sizeof($linhas) == 0) {
-		header('location: erro.php');
+		$_SESSION['flash_error'] = ['E-mail ou senha incorretos', 1];
+		header('location: login.php');
 		exit();	
 	}	
 

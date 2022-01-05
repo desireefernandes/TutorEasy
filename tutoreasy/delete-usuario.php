@@ -1,6 +1,7 @@
 <?php
 
-include 'banco.php'; 
+include 'banco.php';
+$pdo = dbConnect(); 
 
 $id = $_GET['id'];
 var_dump($id);

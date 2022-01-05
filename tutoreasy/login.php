@@ -4,6 +4,7 @@ session_start();
 
 
 include 'banco.php';
+$pdo = dbConnect();
 
 
 $email= $_POST['email'];

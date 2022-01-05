@@ -2,6 +2,7 @@
 session_start();
 
 include 'banco.php';
+$pdo = dbConnect();
 
 $stmt = $pdo->prepare("
     SELECT * FROM tutorial

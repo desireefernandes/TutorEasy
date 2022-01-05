@@ -1,6 +1,7 @@
 <?php
 
 include 'banco.php';
+$pdo = dbConnect();
 
  $name =$_POST['name'];
  $lastname = $_POST['lastname'];

@@ -5,6 +5,7 @@ session_start();
 
 
 include 'banco.php';
+$pdo = dbConnect();
 
 
  $msg = false;

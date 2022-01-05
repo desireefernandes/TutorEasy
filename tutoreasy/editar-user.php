@@ -1,7 +1,8 @@
 <?php
 session_start();
 //////////problemas no editar
- include 'banco.php'; 
+ include 'banco.php';
+ $pdo = dbConnect(); 
 
  $stmt = $pdo->prepare(" SELECT * FROM user WHERE id =  ? "); 
  $stmt->execute([$_GET['id']]);

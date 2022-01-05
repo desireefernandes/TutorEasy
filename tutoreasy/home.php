@@ -11,6 +11,7 @@ if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
 }
 
 include 'banco.php';
+$pdo = dbConnect();
 
  ///// LISTAR TUTORIAIS /////                                                
 $stmt = $pdo->prepare ('SELECT * FROM tutorial WHERE user_id= ?');                  
@@ -18,7 +19,6 @@ $stmt->execute([$_SESSION['user_id']]);
 $tutorial= $stmt->fetchAll();
 ///////////////////////////
 ?>
-
 
 <!DOCTYPE html>
 <html>

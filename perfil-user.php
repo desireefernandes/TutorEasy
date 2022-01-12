@@ -4,9 +4,10 @@ session_start();
 include 'banco.php';
 $pdo = dbConnect();
 
+//APENAS USER LOGADO POSSUI ACESSO
 if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
     session_destroy();
-    header('location: index.php');
+    header('location: login.php');
     exit();
 }
                                              

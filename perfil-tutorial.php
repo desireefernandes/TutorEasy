@@ -4,7 +4,7 @@ session_start();
 //APENAS USER LOGADO POSSUI ACESSO
 if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
     session_destroy();
-	header('location: index.php');
+	header('location: login.php');
     exit();
 }
 
@@ -35,8 +35,6 @@ $pdo = dbConnect();
         body {
             background: #F7F8F9;
         }
-
-        .ui.four.cards {}
     </style>
 </head>
 
@@ -55,69 +53,81 @@ $pdo = dbConnect();
                         <h1>Meus tutoriais</h1>
                     </div>
                     <div class="right floated left aligned six wide column">
-                        <a class="ui right floated button ui green button">Criar tutorial</a>
+                        <a class="ui right floated button ui green button" href="#abrirModal">Criar tutorial</a>
                     </div>
                 </div>
 
             </div>
 
             <!--  SALVAR TUTORIAL -->
-
-            <!--  PRA IMAGEM TEM QUE TER O enctype="multipart/form-data  MAS QUANDO USO O CAMPO NA TABELA FICA VAZIO
-            QUANDO USO $_POST NA PÁGINA UPDATE-TUTORIAL.PHP  E SAVE-TUTORIAL.PHP  -->
-            <?php if(isset($msg) && $msg != false) echo "<p> $msg </p>"; ?>
-            <form action="save-tutorial.php" method="POST" enctype="multipart/form-data">
-                <h2>Crie um Tutorial </h2>
-                <input type="text" name="title" placeholder="titulo">
-                <input type="file" name="arquivo" equired name="arquivo">
-                <input type="text" name="description" placeholder="Descrição">
-                <input type="Submit" Value="Salvar">
-            </form><br>
-            <!---------------------->
-            <table border="3">
-                <?php foreach ($tutorial as $tuto): ?>
-                <tr>
-                    <td><?= $tuto['title'] ?></td>
-                    <td><?= $tuto['arquivo']?></td>
-                    <td><?= $tuto['description'] ?></td>
-
-                    <!--  EDITAR / APAGAR TUTORIAL -->
-                    <td><a href="delete-tutorial.php?id=<?= $tuto['id']?>"> <button>Apagar</button></a></td>
-                    <td><a href="editar-tutorial.php?id=<?= $tuto['id']?>"> <button>Editar</button> </a>
-                        <!------------------------------->
-                    </td>
-                </tr>
-
-                <?php endforeach?>
-            </table>
+            <!--MODAL-->
+            <div id="abrirModal" class="modal">
+                <!--Container Formulário-->
+                <div class="container-modal">
+                    <!--Botão fechar-->
+                    <a href="#fechar" title="Fechar" class="fechar">x</a>
+                    <!--Conteúdo-->
+                    <!--Formulário-->
+                    <?php if(isset($msg) && $msg != false) echo "<p> $msg </p>"; ?>
+                    <div class="ui form">
+                        <form action="save-tutorial.php" method="POST" enctype="multipart/form-data">
+                            <h2 class="ui center aligned header">Adicionar Tutorial</h2>
+                            <!-- input título -->
+                            <div class="field">
+                                <label>Título</label>
+                                <input type="text" name="title" placeholder="Ex: Como fazer pix">
+                            </div>
+                            <!-- input descrição -->
+                            <div class="field">
+                                <label>Descrição</label>
+                                <textarea rows="2" type="text" name="description"
+                                placeholder="Sobre o que é seu tutorial?"></textarea>
+                                <!--<input type="text" name="description" placeholder="Descrição">-->
+                            </div>
+                            <!-- input arquivo -->
+                            <div class="field">
+                                <label> Upload imagem tutorial</label>
+                                <input type="file" name="arquivo" equired name="arquivo">
+                            </div>
+                            <!-- Submit -->
+                            <input class="fluid ui button ui green button" type="Submit" Value="Salvar">
+                        </form>
+                    </div>
+                    <!---------------------->
+                </div>
+                <!--end Formulário-->
+                <!--end Conteúdo-->
+            </div>
+            <!--end modal-->
 
             <!-- CARDS -->
             <div class="ui four cards">
-                <?php
-                $listagem = $pdo->prepare("SELECT * FROM tutorial");
-                $listagem->execute();
-                    while($lista = $listagem->fetch(PDO::FETCH_ASSOC)): 
-                ?>
+                <?php foreach ($tutorial as $tuto): ?>
+                <?php $arquivo = '_arquivo/1/bbb.jpg';
+                        if (is_file("_arquivo/" .  $tuto['id'] . "/" . $tuto['arquivo'])) {
+				            $arquivo = "_arquivo/" .  $tuto['id'] . "/" . $tuto['arquivo'];
+			            }
+			        ?>
+                <!-- CARD-->
                 <div class="ui card">
                     <div class="content">
-                        <div class="header"><?=$lista['title'];?></div>
+                        <div class="header"><?= $tuto['title'] ?></div>
                         <a class="image" href="#">
-                            <img src="img/manu3.jpeg" class="ui large bordered rounded image">
+                            <img class="ui large bordered rounded image" src="<?= $arquivo ?>">
                         </a>
                         <div class="description">
-                            <p><?=$lista['description'];?></p>
+                            <p><?= $tuto['description'] ?></p>
                         </div>
                     </div>
                     <div class="extra content">
-                        <div class="ui two bottom attached buttons">
-                            <div class="ui blue basic button">Editar</div>
-                            <div class="ui red basic button">Excluir</div>
+                        <div class="two ui buttons">
+                            <a class="ui blue basic button" href="editar-tutorial.php?id=<?= $tuto['id']?>">Editar</a>
+                            <a class="ui red basic button" href="delete-tutorial.php?id=<?= $tuto['id']?>">Excluir</a>
                         </div>
                     </div>
                 </div>
-                <?php endwhile; ?>
+                <?php endforeach?>
             </div>
-
 
         </div>
 

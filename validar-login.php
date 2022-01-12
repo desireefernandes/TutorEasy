@@ -26,8 +26,9 @@
 	session_start();
 	$_SESSION['auth'] = true;
 	$_SESSION['user_name'] = $linhas[0]['name'];
+	$_SESSION['lastname'] = $linhas[0]['lastname'];
 	$_SESSION['email'] = $linhas[0]['email'];
-	$_SESSION['user_id'] = $linhas[0]['iduser'];	
+	$_SESSION['user_id'] = $linhas[0]['id'];	
 	
 	header('location: home-tutorial.php');
 ?>

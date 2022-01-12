@@ -1,11 +1,12 @@
 <header class="ui menu">
-	<h1 class="header item"><a href="#" title="TutorEasy">TutorEasy</a></h1>
+	<h1 class="header item"><a href="index.php" title="TutorEasy">TutorEasy</a></h1>
 	<nav>
 		<ul>
-			<li><a href="index#tutoriais" 	title="inicio">		Início</a></li>
-			<li><a href="index#tutoriais" 	title="tutoriais">	Tutoriais</a></li>
+			<li><a href="home-tutorial.php" 	title="tutoriais">	Tutoriais</a></li>
 			<li><a href="index#ranking" 	title="ranking">	Ranking</a></li>
 			<li><a href="index#quemsomos" 	title="quemsomos">	Quem somos?</a></li>
+			<li><a href="perfil-tutorial.php" 	title="quemsomos">	Meus tutoriais</a></li>
+			<li><a href="perfil-user.php" 	title="quemsomos">	Meu perfil</a></li>
 		</ul>
 	</nav>
 	<div class="right menu">

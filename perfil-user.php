@@ -75,7 +75,7 @@ $dados = $stmt->fetchAll();
                     </div>
                     <br>
                     <div class="content">
-                        <p>Essa ação não podera ser desfeita, você perderá todos os tutoriais que criou e os salvos,
+                        <p>Essa ação não poderá ser desfeita, você perderá todos os tutoriais que criou e os salvos,
                             além disso, não poderá mais contribuir na nossa comunidade :(
                         </p>
                         <p>Deseja realmente excluir sua conta?</p>

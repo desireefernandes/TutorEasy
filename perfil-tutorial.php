@@ -135,7 +135,12 @@ $pdo = dbConnect();
                     <div>
                         <br>
                         <div class="header">
-                            <p class="ui center aligned header">Deseja realmente excluir o tutorial?</p>
+                            <p class="ui center aligned header">Tem certeza disso?</p>
+                        </div>
+                        <br>
+                        <div class="content">
+                            <p>Essa ação não poderá ser desfeita, você perderá todo o conteúdo criado no tutorial :( </p>
+                            <p>Deseja realmente excluir?</p>
                         </div>
                         <br>
                         <div class="two ui buttons">

@@ -66,7 +66,6 @@ $pdo = dbConnect();
                 <div class="container-modal">
                     <!--Botão fechar-->
                     <a href="#fechar" title="Fechar" class="fechar">x</a>
-                    <!--Conteúdo-->
                     <!--Formulário-->
                     <?php if(isset($msg) && $msg != false) echo "<p> $msg </p>"; ?>
                     <div class="ui form">
@@ -81,7 +80,7 @@ $pdo = dbConnect();
                             <div class="field">
                                 <label>Descrição</label>
                                 <textarea rows="2" type="text" name="description"
-                                placeholder="Sobre o que é seu tutorial?"></textarea>
+                                    placeholder="Sobre o que é seu tutorial?"></textarea>
                                 <!--<input type="text" name="description" placeholder="Descrição">-->
                             </div>
                             <!-- input arquivo -->
@@ -96,7 +95,6 @@ $pdo = dbConnect();
                     <!---------------------->
                 </div>
                 <!--end Formulário-->
-                <!--end Conteúdo-->
             </div>
             <!--end modal-->
 
@@ -122,12 +120,33 @@ $pdo = dbConnect();
                     <div class="extra content">
                         <div class="two ui buttons">
                             <a class="ui blue basic button" href="editar-tutorial.php?id=<?= $tuto['id']?>">Editar</a>
-                            <a class="ui red basic button" href="delete-tutorial.php?id=<?= $tuto['id']?>">Excluir</a>
+                            <a class="ui red basic button" href="#abrirModalExcluir">Excluir</a>
                         </div>
                     </div>
                 </div>
                 <?php endforeach?>
             </div>
+
+            <!--  Confirmação excluir -->
+            <!--MODAL-->
+            <div id="abrirModalExcluir" class="modal">
+                <div class="container-modal">
+                    <!--Conteúdo-->
+                    <div>
+                        <br>
+                        <div class="header">
+                            <p class="ui center aligned header">Deseja realmente excluir o tutorial?</p>
+                        </div>
+                        <br>
+                        <div class="two ui buttons">
+                            <a class="ui button" href="#fechar" title="Fechar">Cancelar</a>
+                            <a class="ui red button" href="delete-tutorial.php?id=<?= $tuto['id']?>">Excluir</a>
+                        </div>
+                    </div>
+                    <!-- end Conteúdo-->
+                </div>
+            </div>
+            <!--end modal-->
 
         </div>
 

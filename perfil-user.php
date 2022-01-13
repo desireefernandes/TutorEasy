@@ -42,26 +42,57 @@ $dados = $stmt->fetchAll();
 
     <div class="ui vertical stripe segment">
         <!-- Deixa o card centralizado e pequeno -->
-       <!--  <div class="ui middle aligned center aligned grid"> -->
-            <!-- PERFIL -->
-            <div class="container-user">
-                <div class="content-title-user">
-                    <h1>Meu perfil</h1>
+        <!--  <div class="ui middle aligned center aligned grid"> -->
+        <!-- PERFIL -->
+        <div class="container-user">
+            <div class="content-title-user">
+                <h1>Meu perfil</h1>
+            </div>
+            <h4 class="perfil-dados">Nome: <?= $_SESSION['user_name']; ?> <br>
+                Sobrenome: <?=$_SESSION['lastname']; ?><br>
+                E-mail: <?=$_SESSION['email'];?> </h4>
+            <div>
+                <!--Nav buttons-->
+                <div class="grid">
+                    <a class="ui blue button " href="editar-user.php?id=<?=$_SESSION['user_id']?>">Editar dados</a>
+                    <a class="ui red button" href="#abrirModalExcluir">Excluir conta</a>
                 </div>
-                <h4 class="perfil-dados" >Nome: <?= $_SESSION['user_name']; ?> <br>
-                    Sobrenome: <?=$_SESSION['lastname']; ?><br>
-                    E-mail: <?=$_SESSION['email'];?> </h4>
-                <div><!--Nav buttons--> 
-                    <div class="grid">
-                        <a class="ui blue button " href="editar-user.php?id=<?=$_SESSION['user_id']?>">Editar dados</a>
-                        <a class="ui red button" href="delete-usuario.php?id=<?=$_SESSION['user_id']?>">Excluir conta</a>
+                <a class="ui right floated button" href="logout.php">Sair</a>
+
+            </div>
+        </div>
+        <!--conteiner-->
+
+        <!--  Confirmação excluir -->
+        <!--MODAL-->
+        <div id="abrirModalExcluir" class="modal">
+            <div class="container-modal">
+                <!--Conteúdo-->
+                <div>
+                    <br>
+                    <div class="header">
+                        <p class="ui center aligned header">Tem certeza disso?</p>
                     </div>
-                    <a class="ui right floated button" href="logout.php">Sair</a>
-
+                    <br>
+                    <div class="content">
+                        <p>Essa ação não podera ser desfeita, você perderá todos os tutoriais que criou e os salvos,
+                            além disso, não poderá mais contribuir na nossa comunidade :(
+                        </p>
+                        <p>Deseja realmente excluir sua conta?</p>
+                    </div>
+                    <br>
+                    <div class="two ui buttons">
+                        <a class="ui button" href="#fechar" title="Fechar">Não, cancelar!</a>
+                        <a class="ui red button" href="delete-usuario.php?id=<?=$_SESSION['user_id']?>">Sim, excluir
+                            conta</a>
+                    </div>
                 </div>
-            </div><!--conteiner-->
+                <!-- end Conteúdo-->
+            </div>
+        </div>
+        <!--end modal-->
 
-       <!--  </div> -->
+        <!--  </div> -->
     </div>
     <!-- footer -->
     <?php include 'footer.php'; ?>

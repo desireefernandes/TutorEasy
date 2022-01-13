@@ -80,6 +80,79 @@ $pdo = dbConnect();
     <!-- </div> -->
     <!-- footer -->
     <?php include 'footer.php'; ?>
+
+<!-- BUSCA -->
+
+<h2> Pesquisa de Tutoriais</h2>
+    <form action="" method="GET">
+    <label>Nome do Tutorial</label>
+    <input type="text" name="busca"  placeholder="Insira o nome do tutorial">
+    <button >Buscar</button>
+    </form>
+
+
+<br>
+
+<table width="600px" border="1">
+    <tr>
+        <th>Titulo</th>
+        <th>Arquivo</th>
+        <th>Descrição</th>
+    </tr>
+
+
+<?php
+
+if(!isset($_GET['busca'])) {
+
+?>
+
+<tr>
+    <td colspan="4">Digite algo para pesquisar</td>
+</tr>
+
+<?php
+}  else {
+
+    $pesquisa = $_GET['busca'];
+    $pesquisa = $pdo->prepare("SELECT * FROM tutorial WHERE title LIKE '%$pesquisa%' ");
+    $pesquisa->execute();
+/*ISSO NÃO TA FUNCIONANDO 
+DEVERIA FUNCIONAR COM
+if ($pesquisa->num_rows == 0) {
+                ?>
+            <tr>
+                <td colspan="3">Nenhum resultado encontrado...</td>
+            </tr> 
+ISSO É NO CASO DE PESQUISAR UM TUTORIAL QUE NÃO EXISTE
+
+            */
+
+    if ($pesquisa == 0) {
+                ?>
+            <tr>
+                <td colspan="3">Nenhum resultado encontrado</td>
+            </tr>
+
+<?php
+} else {
+                while($lista = $pesquisa->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $lista['title']; ?></td>
+                        <td><?php echo $lista['arquivo']; ?></td>
+                        <td><?php echo $lista['description']; ?></td>
+                    </tr>
+                    <?php
+                }
+            }
+            ?>
+        <?php
+        } ?>
+    </table>
+
+
+
 </body>
 
 </html>

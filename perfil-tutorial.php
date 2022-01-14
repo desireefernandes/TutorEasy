@@ -11,11 +11,19 @@ if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
 include 'banco.php';
 $pdo = dbConnect();
 
- ///// LISTAR TUTORIAIS /////                                                
- $stmt = $pdo->prepare ('SELECT * FROM tutorial WHERE user_id= ?');                  
- $stmt->execute([$_SESSION['user_id']]);
- $tutorial= $stmt->fetchAll();
- ///////////////////////////
+///// LISTAR TUTORIAIS /////                                                
+$stmt = $pdo->prepare ('SELECT * FROM tutorial WHERE user_id= ?');                  
+$stmt->execute([$_SESSION['user_id']]);
+$tutorial= $stmt->fetchAll();
+///////////////////////////
+
+///// EDIÇÃO TUTORIAIS ///// 
+$smt = $pdo->prepare("
+   SELECT * FROM tutorial
+   WHERE id =  ? "); 
+$smt->execute([$_GET['id']]);
+$tuto= $smt -> fetch();
+///////////////////////////
 
 ?>
 
@@ -59,45 +67,6 @@ $pdo = dbConnect();
 
             </div>
 
-            <!--  SALVAR TUTORIAL -->
-            <!--MODAL-->
-            <div id="abrirModal" class="modal">
-                <!--Container Formulário-->
-                <div class="container-modal">
-                    <!--Botão fechar-->
-                    <a href="#fechar" title="Fechar" class="fechar">x</a>
-                    <!--Formulário-->
-                    <?php if(isset($msg) && $msg != false) echo "<p> $msg </p>"; ?>
-                    <div class="ui form">
-                        <form action="save-tutorial.php" method="POST" enctype="multipart/form-data">
-                            <h2 class="ui center aligned header">Adicionar Tutorial</h2>
-                            <!-- input título -->
-                            <div class="field">
-                                <label>Título</label>
-                                <input type="text" name="title" placeholder="Ex: Como fazer pix">
-                            </div>
-                            <!-- input descrição -->
-                            <div class="field">
-                                <label>Descrição</label>
-                                <textarea rows="2" type="text" name="description"
-                                    placeholder="Sobre o que é seu tutorial?"></textarea>
-                                <!--<input type="text" name="description" placeholder="Descrição">-->
-                            </div>
-                            <!-- input arquivo -->
-                            <div class="field">
-                                <label> Upload imagem tutorial</label>
-                                <input type="file" name="arquivo" equired name="arquivo">
-                            </div>
-                            <!-- Submit -->
-                            <input class="fluid ui button ui green button" type="Submit" Value="Salvar">
-                        </form>
-                    </div>
-                    <!---------------------->
-                </div>
-                <!--end Formulário-->
-            </div>
-            <!--end modal-->
-
             <!-- CARDS -->
             <div class="ui four cards">
                 <?php foreach ($tutorial as $tuto): ?>
@@ -127,6 +96,45 @@ $pdo = dbConnect();
                 <?php endforeach?>
             </div>
 
+            <!--  SALVAR TUTORIAL -->
+            <!--MODAL-->
+            <div id="abrirModal" class="modal">
+                <!--Container Formulário-->
+                <div class="container-modal">
+                    <!--Botão fechar-->
+                    <a href="#fechar" title="Fechar" class="fechar">x</a>
+                    <!--Formulário-->
+                    <?php if(isset($msg) && $msg != false) echo "<p> $msg </p>"; ?>
+                    <div class="ui form">
+                        <form action="save-tutorial.php" method="POST" enctype="multipart/form-data">
+                            <h2 class="ui center aligned header">Adicionar Tutorial</h2>
+                            <!-- input título -->
+                            <div class="field">
+                                <label>Título</label>
+                                <input type="text" name="title" placeholder="Ex: Como fazer pix" required>
+                            </div>
+                            <!-- input descrição -->
+                            <div class="field">
+                                <label>Descrição</label>
+                                <textarea rows="2" type="text" name="description"
+                                    placeholder="Sobre o que é seu tutorial?" required></textarea>
+                                <!--<input type="text" name="description" placeholder="Descrição">-->
+                            </div>
+                            <!-- input arquivo -->
+                            <div class="field">
+                                <label> Upload imagem tutorial</label>
+                                <input type="file" name="arquivo" equired name="arquivo" required>
+                            </div>
+                            <!-- Submit -->
+                            <input class="fluid ui button ui green button" type="Submit" Value="Salvar">
+                        </form>
+                    </div>
+                    <!---------------------->
+                </div>
+                <!--end Formulário-->
+            </div>
+            <!--end modal-->
+
             <!--  Confirmação excluir -->
             <!--MODAL-->
             <div id="abrirModalExcluir" class="modal">
@@ -139,7 +147,8 @@ $pdo = dbConnect();
                         </div>
                         <br>
                         <div class="content">
-                            <p>Essa ação não poderá ser desfeita, você perderá todo o conteúdo criado no tutorial :( </p>
+                            <p>Essa ação não poderá ser desfeita, você perderá todo o conteúdo criado no tutorial :(
+                            </p>
                             <p>Deseja realmente excluir?</p>
                         </div>
                         <br>
@@ -153,9 +162,33 @@ $pdo = dbConnect();
             </div>
             <!--end modal-->
 
-        </div>
+            <!--  EDITAR TUTORIAL -->
+            <!--MODAL-->
+            <div id="abrirModalEdicao" class="modal">
+                <!--Container Formulário-->
+                <div class="container-modal">
+                    <!--Botão fechar-->
+                    <a href="#fechar" title="Fechar" class="fechar">x</a>
+                    <!--Formulário-->
+                    <form action="update-tutorial.php" method="POST" enctype="multipart/form-data">
 
-    </div>
+                        <h2> Edite o Tutorial</h2>
+                        <input type="text" name="title" value="<?=$tuto['title']?>" placeholder="title">
+                        <input type="file" name="arquivo" value="<?=$tuto['arquivo']?>" placeholder="arquivo">
+                        <input type="text" name="description" value="<?=$tuto['description']?>"
+                            placeholder="description">
+
+                        <input type="Submit" Value="Salvar">
+                        <input type="hidden" name="id" value="<?=$tuto['id']?>">
+
+                    </form>
+                    <!---------------------->
+                </div>
+                <!--end Formulário-->
+            </div>
+            <!--end modal-->
+
+        </div>
     </div>
 
     <!-- footer -->

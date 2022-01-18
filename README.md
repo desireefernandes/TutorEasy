@@ -8,8 +8,5 @@ TutorEasy é uma plataforma online que disponibiliza tutoriais de fácil entendi
 
 ## Equipe
 
-* Ana Beatriz
-* Aline Martinneli
 * Desiree Fernandes
 * Gleiciane Galdino
-* Wirpson Andrade

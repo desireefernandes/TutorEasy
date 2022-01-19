@@ -77,7 +77,8 @@
   <section class="sec-5" id="quemsomos">
   </section>
 
-  <!-- TUTORIAIS -->
+  <!-- TUTORIAIS
+  REFERENCIA: https://codepen.io/onion2k/pen/xxZYBVj-->
   <h2 class="ui center aligned header">Tutoriais</h2>
   <section class="cardsTuto" id="tutoriais">
     <input type="radio" name="position" checked />

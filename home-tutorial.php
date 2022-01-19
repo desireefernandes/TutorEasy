@@ -52,21 +52,7 @@ $pdo = dbConnect();
         <div class="content-title-tutorial">
             <h1>Tutoriais</h1>
         </div>
-
-        <!-- BUSCA -->
-        <div>
-            <form action="" method="GET">
-                <div class="ui fluid action input">
-                    <input type="text" name="busca" placeholder="Pesquisar...">
-                    <button class="ui icon button">
-                        <i class="search icon"></i>
-                    </button>
-                </div>
-            </form>
-            <br>
-            <br>
-        </div>
-
+        
         <!-- CARDS -->
         <div class="ui four cards">
             <?php

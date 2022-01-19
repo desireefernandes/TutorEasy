@@ -7,7 +7,8 @@
 	<nav>
 		<ul>
 			<li><a href="home-tutorial.php">Tutoriais</a></li>
-			<li><a href="index#tutoriais">Contribuir</a></li>
+			<li><a href="busca.php">Pesquisa</a></li>
+			<li><a href="index#contribuir1">Contribuir</a></li>
 			<li><a href="index#quemsomos">Quem somos?</a></li>
 		</ul>
 	</nav>

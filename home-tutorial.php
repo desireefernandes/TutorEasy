@@ -20,6 +20,7 @@ $pdo = dbConnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutorEasy</title>
+    <link rel="icon" type="imagem/png" href="/img/_logo/simbolo.png" />
 
     <link rel="stylesheet" href="css/style.css">
     <!--Semantic UI -->
@@ -54,60 +55,15 @@ $pdo = dbConnect();
 
         <!-- BUSCA -->
         <div>
-            <h2> Pesquisa de Tutoriais</h2>
             <form action="" method="GET">
-                <label>Nome do Tutorial</label>
-                <input type="text" name="busca" placeholder="Insira o nome do tutorial">
-                <button>Buscar</button>
+                <div class="ui fluid action input">
+                    <input type="text" name="busca" placeholder="Pesquisar...">
+                    <button class="ui icon button">
+                        <i class="search icon"></i>
+                    </button>
+                </div>
             </form>
             <br>
-            <table width="600px" border="1">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Arquivo</th>
-                    <th>Descrição</th>
-                </tr>
-                <?php
-                    if(!isset($_GET['busca'])) {
-                ?>
-                <tr>
-                    <td colspan="4">Digite algo para pesquisar</td>
-                </tr>
-                <?php
-                    } else {
-                    $pesquisa = $_GET['busca'];
-                    $pesquisa = $pdo->prepare("SELECT * FROM tutorial WHERE title LIKE '%$pesquisa%' ");
-                    $pesquisa->execute();
-                    /*ISSO NÃO TA FUNCIONANDO 
-                    DEVERIA FUNCIONAR COM
-                    if ($pesquisa->num_rows == 0) {
-                    ?>
-                <tr>
-                    <td colspan="3">Nenhum resultado encontrado...</td>
-                </tr>
-                ISSO É NO CASO DE PESQUISAR UM TUTORIAL QUE NÃO EXISTE
-                */
-                if ($pesquisa == 0) {
-                ?>
-                <tr>
-                    <td colspan="3">Nenhum resultado encontrado</td>
-                </tr>
-                <?php
-                } else {
-                while($lista = $pesquisa->fetch(PDO::FETCH_ASSOC)) {
-                    ?>
-                <tr>
-                    <td><?php echo $lista['title']; ?></td>
-                    <td><?php echo $lista['arquivo']; ?></td>
-                    <td><?php echo $lista['description']; ?></td>
-                </tr>
-                <?php
-                }
-            }
-            ?>
-                <?php
-            } ?>
-            </table>
             <br>
         </div>
 
@@ -125,7 +81,7 @@ $pdo = dbConnect();
             <div class="ui card">
                 <div class="content">
                     <div class="header"><?=$lista['title'];?></div>
-                    <a class="image" href="#">
+                    <a class="image" href="tutorial.php?id=<?=$lista['id'];?>">
                         <img class="ui large bordered rounded image" src="<?= $arquivo ?>">
                     </a>
                     <div class="description">

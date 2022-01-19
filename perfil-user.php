@@ -24,6 +24,8 @@ $dados = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutorEasy</title>
+    <link rel="icon" type="imagem/png" href="/img/_logo/simbolo.png" />
+
 
     <link rel="stylesheet" href="css/style.css">
     <!--Semantic UI -->
